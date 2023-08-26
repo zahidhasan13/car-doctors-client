@@ -1,8 +1,8 @@
 import React from 'react';
 import { HiArrowRight } from 'react-icons/hi';
 
-const Service = ({service}) => {
-    const {img, title, price} = service;
+const Product = ({product}) => {
+    const {img, title, price} = product;
     return (
         <div className='bg-gray-800 p-8 rounded space-y-4 text-left'>
             <img src={img} alt="" className='w-full rounded h-60'/>
@@ -15,4 +15,4 @@ const Service = ({service}) => {
     );
 };
 
-export default Service;
+export default Product;
