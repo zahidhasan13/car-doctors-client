@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Checkout = () => {
     const loadedService = useLoaderData();
     const {user} =useContext(AuthContext);
+    const navigate = useNavigate();
     const {_id, title, price, img} = loadedService;
 
     const handleBooking = (event) => {
@@ -20,10 +21,9 @@ const Checkout = () => {
             date,
             price,
             img,
-            service_id: _id
+            service_id: _id,
+            service: title
         }
-
-        console.log(book);
 
         fetch("http://localhost:5000/bookings", {
             method: "POST",
@@ -34,7 +34,10 @@ const Checkout = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-                console.log(data);
+               if(data.insertedId){
+                navigate("/");
+               }
+                
             })
     };
 
