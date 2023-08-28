@@ -3,7 +3,6 @@ import { HiArrowRight } from 'react-icons/hi';
 
 const Product = ({product}) => {
     const {img, title, price} = product;
-    console.log(img);
     return (
         <div className='bg-gray-800 p-8 rounded space-y-4 text-left'>
             <img src={img} alt="" className='p-8 w-full rounded h-60 bg-gray-200'/>

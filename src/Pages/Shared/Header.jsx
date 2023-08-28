@@ -1,7 +1,10 @@
 import { HiOutlineShoppingBag, HiSearch } from "react-icons/hi";
 import logo from '../../assets/logo.svg';
 import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 const Header = () => {
+    const {user} =useContext(AuthContext);
     return (
         <header className="sticky top-0 z-50">
     <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
@@ -10,9 +13,17 @@ const Header = () => {
                 <img src={logo} className="mr-3 w-20" alt="Flowbite Logo" />
             </Link>
             <div className="flex items-center lg:order-2">
-                <a href="#" className="text-2xl mr-2">
+                {
+                    user ? <Link to="/profile" className="text-xl mr-2">
+                    {
+                        user && (user.email).split('@')[0]
+                    }
+                </Link>
+                : <Link to="/login"><button className='bg-[#FF3811] px-5 py-2 rounded my-4 text-white font-bold'>Login</button></Link>
+                }
+                <Link to="/servicesCart" className="text-2xl mr-2">
                     <HiOutlineShoppingBag></HiOutlineShoppingBag>
-                </a>
+                </Link>
                 <a href="#" className="text-2xl mr-2">
                     <HiSearch></HiSearch>
                 </a>
